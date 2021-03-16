@@ -42,12 +42,13 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
-                        <input type="text">
+                    <form method="post" action="{% url 'signup' %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="hidden" name="next" value="{{ next }}">
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Sign Up</button>
                 </div>
             </div>
@@ -67,12 +68,11 @@
                     <form method="post" action="{% url 'login' %}">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <input type="submit" class="btn btn-primary" value="Log In">
                         <input type="hidden" name="next" value="{{ next }}">
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" value="login">
                 </div>
             </div>
         </div>
