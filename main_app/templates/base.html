@@ -42,14 +42,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="{% url 'signup' %}">
+                    <form method="post" action="/accounts/signup/" id="signUpForm">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <input type="hidden" name="next" value="{{ next }}">
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Sign Up</button>
+                    <input type="submit" class="btn btn-primary" value="Sign Up" form="signUpForm">
                 </div>
             </div>
         </div>
@@ -65,14 +65,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="{% url 'login' %}">
+                    <form method="post" action="/accounts/login" id="logInForm">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <input type="hidden" name="next" value="{{ next }}">
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" class="btn btn-primary" value="login">
+                    <input type="submit" class="btn btn-primary" value="login" form="logInForm">
                 </div>
             </div>
         </div>

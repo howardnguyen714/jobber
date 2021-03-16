@@ -7,10 +7,20 @@ from django.contrib.auth import login
 
 from django.http import HttpResponse
 def home(request):
-    return render(request, 'home.html')
+  if request.method == 'POST':
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      login(request, user)
+      return redirect('index')
+    else:
+      error_message = 'Invalid sign up - try again'
+  form = UserCreationForm()
+  context = {'form': form}
+  return render(request, 'home.html', context)
 
 def profile(request):
-    return render(request, 'profile.html')
+  return render(request, 'profile.html')
 
 def signup(request):
   error_message = ''
@@ -24,4 +34,4 @@ def signup(request):
       error_message = 'Invalid sign up - try again'
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
-  return render(request, 'registration/signup.html', context)
+  return render(request, 'home.html', context)
