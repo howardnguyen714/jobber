@@ -11,6 +11,7 @@ def home(request):
   context = {'form': form}
   return render(request, 'home.html', context)
 
+@login_required
 def profile(request):
   return render(request, 'profile.html')
 
