@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Edit Profile</h1>
+
+    <form method="POST" action="/profile/edit">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        <input type="submit" class="btn btn-primary" value="Edit User">
+    </form>
+
+{% comment %} <form action="" method"POST">
+    <input type="text" value="{{user.username}}">
+    <input type="submit" value="Change Username">
+</form> {% endcomment %}
+
+{% endblock %}
