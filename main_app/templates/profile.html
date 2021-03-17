@@ -1,8 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div>
-    Profile
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <h1> Profile </h1>
+        </div>
+        <div class="col-4">
+            <h4> Hello! Welcome {{user.username}} </h4>
+            <p class="date-joined"> Member since: {{user.date_joined}} </p>
+        </div>
+    </div>
 </div>
+
 
 {% endblock %}
