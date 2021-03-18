@@ -47,6 +47,11 @@ def edit(request):
   else:
     return render(request, 'edit.html', { 'user_form': user_form })
 
+def events_detail(request, event_id):
+  event = Event.objects.get(id=event_id)
+  context = { 'event': event, }
+  return render(request, 'detail.html', context)
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
