@@ -19,7 +19,7 @@ def profile(request):
 
 def edit(request):
   user = User.objects.get(username=request.user)
-  print(user)
+  # print(user)
   # user=request.user
   user_form = UserForm(request.POST or None, instance=user)
   # print(user)
