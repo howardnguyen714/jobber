@@ -10,8 +10,11 @@ from random import randint
 
 from django.http import HttpResponse
 def home(request):
-  events = Event.objects.all()
-  return render(request, 'home.html', {'events': events})
+  context = {
+    'events': Event.objects.all(),
+    'form': UserCreationForm
+  }
+  return render(request, 'home.html', context)
 
 @login_required
 def profile(request):
@@ -31,8 +34,40 @@ def edit(request):
 
 def events_detail(request, event_id):
   event = Event.objects.get(id=event_id)
-  context = { 'event': event, }
+  current_user = request.user.id
+  # print(event.users.get(id=current_user).id)
+  users_events = event.users.all().values_list('id')
+  print(users_events)
+  
+  registered = True
+  for user in users_events:
+    print(user[0])
+    print(current_user)
+    if(user[0] == current_user):
+      registered = False
+
+  context = {
+    'event': event,
+    'registered': registered
+  }
   return render(request, 'detail.html', context)
+
+# def find_instance(users_events, current_user):
+  
+
+@login_required
+def assoc_event(request, event_id, user_id):
+  event = Event.objects.get(id=event_id)
+  event.users.add(user_id)
+  
+  return redirect('detail', event_id=event_id)
+
+@login_required
+def unassoc_event(request, event_id, user_id):
+  event = Event.objects.get(id=event_id)
+  event.users.remove(user_id)
+  
+  return redirect('detail', event_id=event_id)
 
 def signup(request):
   error_message = ''
