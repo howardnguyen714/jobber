@@ -1,13 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>I AM A DETAIL</h1>
+<div class="row">
+    <h2>{{ event.title }}</h2>
+</div>
+<div class="row">
+    {{ event.date }}
+</div>
+<div class="row">
+    Speaker(s): {{event.speaker}}<span class="eventDetailDivider" style="margin-left: 10px">|</span>Industry: {{event.industry}}<span class="eventDetailDivider">|</span>Type: {{event.category}}
+</div>
+<div class="row">
+    <p>{{ event.description }}</p>
+</div>
 
-<p>{{ event.title }}</p>
-<p>{{ event.date }}</p>
-<p>{{ event.description }}</p>
-<form method="POST" action="">
-    <input type="submit" class="btn btn-primary" value="Register">
+{%if registered%}
+<form action="assoc_event/{{user.id}}/" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Register" class="btn btn-primary">
 </form>
+
+{%else%}
+<form action="unassoc_event/{{user.id}}/" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Unregister" class="btn btn-primary">
+</form>
+{%endif%}
 
 {% endblock %}
