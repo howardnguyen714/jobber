@@ -10,24 +10,9 @@ from random import randint
 
 from django.http import HttpResponse
 def home(request):
-  events = Event.objects.all()
-  rand_event_1 = events[randint(0, len(events)-1)]
-  rand_event_2 = events[randint(0, len(events)-1)]
-  rand_event_3 = events[randint(0, len(events)-1)]
-  rand_event_4 = events[randint(0, len(events)-1)]
-  while rand_event_2 == rand_event_1:
-    rand_event_2 = events[randint(0, len(events)-1)]
-  while rand_event_3 == rand_event_2 or rand_event_3 == rand_event_1:
-    rand_event_3 = events[randint(0, len(events)-1)]
-  while rand_event_4 == rand_event_3 or rand_event_4 == rand_event_2 or rand_event_4 == rand_event_1:
-    rand_event_4 = events[randint(0, len(events)-1)]
-  form = UserCreationForm()
   context = {
-    'form': form,
-    'event_1': rand_event_1,
-    'event_2': rand_event_2,
-    'event_3': rand_event_3,
-    'event_4': rand_event_4
+    'events': Event.objects.all(),
+    'form': UserCreationForm
   }
   return render(request, 'home.html', context)
 
@@ -46,6 +31,43 @@ def edit(request):
     return redirect('profile')
   else:
     return render(request, 'edit.html', { 'user_form': user_form })
+
+def events_detail(request, event_id):
+  event = Event.objects.get(id=event_id)
+  current_user = request.user.id
+  # print(event.users.get(id=current_user).id)
+  users_events = event.users.all().values_list('id')
+  print(users_events)
+  
+  registered = True
+  for user in users_events:
+    print(user[0])
+    print(current_user)
+    if(user[0] == current_user):
+      registered = False
+
+  context = {
+    'event': event,
+    'registered': registered
+  }
+  return render(request, 'detail.html', context)
+
+# def find_instance(users_events, current_user):
+  
+
+@login_required
+def assoc_event(request, event_id, user_id):
+  event = Event.objects.get(id=event_id)
+  event.users.add(user_id)
+  
+  return redirect('detail', event_id=event_id)
+
+@login_required
+def unassoc_event(request, event_id, user_id):
+  event = Event.objects.get(id=event_id)
+  event.users.remove(user_id)
+  
+  return redirect('detail', event_id=event_id)
 
 def signup(request):
   error_message = ''
