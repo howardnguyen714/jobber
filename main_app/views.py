@@ -43,12 +43,12 @@ def events_detail(request, event_id):
   current_user = request.user.id
   # print(event.users.get(id=current_user).id)
   users_events = event.users.all().values_list('id')
-  print(users_events)
+  # print(users_events)
   
   registered = True
   for user in users_events:
-    print(user[0])
-    print(current_user)
+    # print(user[0])
+    # print(current_user)
     if(user[0] == current_user):
       registered = False
 
