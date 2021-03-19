@@ -17,14 +17,9 @@ def home(request):
   return render(request, 'home.html', context)
 
 def get_category(request): 
-  if request.method == 'GET':
-    print('=============')
-    print(request.GET)
-  else:
-    print('NOT GET')
-  # events = Event.objects.filter(category__contains=category)
-  # print(events)
-  return render(request, 'results.html')#, {'events': events})
+  search_param = request.GET['search']
+  events = Event.objects.filter(category__contains=search_param)
+  return render(request, 'results.html', {'events': events})
 
 @login_required
 def profile(request):
