@@ -9,3 +9,8 @@
 .eventDetailDivider {
     margin-left: 20px;
 }
+
+#search-bar{
+    width: 50% !important;
+    margin-top: 1% !important;
+}

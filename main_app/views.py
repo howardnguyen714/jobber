@@ -16,13 +16,19 @@ def home(request):
   }
   return render(request, 'home.html', context)
 
+def get_category(request): 
+  search_param = request.GET['search'].lower()
+  # print(search_param)
+  events = Event.objects.filter(category__contains=search_param)
+  return render(request, 'results.html', {'events': events})
+
 @login_required
 def profile(request):
   return render(request, 'profile.html')
 
 def edit(request):
   user = User.objects.get(username=request.user)
-  print(user)
+  # print(user)
   # user=request.user
   user_form = UserForm(request.POST or None, instance=user)
   # print(user)
