@@ -14,3 +14,7 @@
     width: 50% !important;
     margin-top: 1% !important;
 }
+
+.card-title, .capitalize{
+    text-transform: capitalize !important;
+}
