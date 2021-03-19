@@ -25,7 +25,14 @@
     {% csrf_token %}
     <input type="submit" value="Unregister" class="btn btn-primary">
 </form>
+
+{% comment %} <form action="#">
+    <input type="submit" data-toggle="modal" data-target="confirmUnregister" class="btn btn-primary">
+</form> {% endcomment %}
 {%endif%}
 
+<div class="modal fade" id="confirmUnregister" tabindex="-1" aria-labelledby="signUpModalLabel" aria-hidden="true">
+
+</div>
 
 {% endblock %}
