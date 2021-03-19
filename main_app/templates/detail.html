@@ -21,11 +21,6 @@
 </form>
 
 {%else%}
-{% comment %} <form action="unassoc_event/{{user.id}}/" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Unregister" class="btn btn-primary">
-</form> {% endcomment %}
-
 <input type="submit" value="Unregister" data-toggle="modal" data-target="#confirmUnregister" class="btn btn-primary">
 {%endif%}
 
