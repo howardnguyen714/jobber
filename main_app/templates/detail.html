@@ -21,18 +21,26 @@
 </form>
 
 {%else%}
-<form action="unassoc_event/{{user.id}}/" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Unregister" class="btn btn-primary">
-</form>
-
-{% comment %} <form action="#">
-    <input type="submit" data-toggle="modal" data-target="confirmUnregister" class="btn btn-primary">
-</form> {% endcomment %}
+<input type="submit" value="Unregister" data-toggle="modal" data-target="#confirmUnregister" class="btn btn-primary">
 {%endif%}
 
-<div class="modal fade" id="confirmUnregister" tabindex="-1" aria-labelledby="signUpModalLabel" aria-hidden="true">
-
+<div class="modal fade" id="confirmUnregister" tabindex="-1" aria-labelledby="confirmUnregisterLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="signUpModalLabel">Are you sure you want to unregister?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <form method="post" action="unassoc_event/{{user.id}}/" id="unregisterBtn">
+                    {% csrf_token %}
+                    <input type="submit" value="Unregister" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
