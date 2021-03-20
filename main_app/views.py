@@ -23,7 +23,10 @@ def get_category(request):
 
 @login_required
 def profile(request):
-  return render(request, 'profile.html')
+  current_user = request.user.id
+  users_events = Event.objects.filter(users__id=current_user)
+  # print(users_events)
+  return render(request, 'profile.html', { 'users_events': users_events } )
 
 def edit(request):
   user = User.objects.get(username=request.user)
