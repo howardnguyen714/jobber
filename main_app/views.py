@@ -18,7 +18,7 @@ def home(request):
 
 def get_category(request): 
   search_param = request.GET['search'].lower()
-  events = Event.objects.filter(category__contains=search_param)
+  events = Event.objects.filter(title__contains=search_param)
   return render(request, 'results.html', {'events': events})
 
 @login_required

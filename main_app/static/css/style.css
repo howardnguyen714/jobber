@@ -11,6 +11,10 @@
 }
 
 #search-bar{
-    width: 50% !important;
-    margin-top: 1% !important;
+    width: 50%;
+    margin-top: 1%;
+}
+
+.capitalize{
+    text-transform: capitalize;
 }
