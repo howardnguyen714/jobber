@@ -2,17 +2,22 @@
 {% block content %}
 
 <div class="row">
-    <h2>{{ event.title }}</h2>
+    <h2 class="capitalize">{{ event.title }}</h2>
 </div>
 <div class="row">
     {{ event.date }}
 </div>
 <div class="row">
-    Speaker(s): {{event.speaker}}<span class="eventDetailDivider" style="margin-left: 10px">|</span>Industry: {{event.industry}}<span class="eventDetailDivider">|</span>Type: {{event.category}}
+    Speaker(s): {{event.speaker}}<span class="eventDetailDivider" style="margin-left: 10px">
+</div>
+<div class="row">
+    </span>Industry: {{event.industry}}<span class="eventDetailDivider"></span>Type: {{event.category}}
 </div>
 <div class="row">
     <p>{{ event.description }}</p>
 </div>
+
+{% if user.is_authenticated %}
 
 {%if registered%}
 <form action="assoc_event/{{user.id}}/" method="POST">
@@ -42,5 +47,7 @@
         </div>
     </div>
 </div>
+
+{% endif %}
 
 {% endblock %}
