@@ -9,13 +9,13 @@
 </div>
 
 <div class="form-inline">
-  <div class="col-6">
+  <div class="col-12 col-md-6">
     <form method="GET" action="/search/" class="form-inline my-2 my-md-0">
       <input name="search" type="search" id="search-bar" class="form-control" placeholder="search">
       <input type="submit" value="Search" class="form-control btn btn-outline-dark my-2 my-sm">
     </form>
   </div>
-  <div class="col-6">
+  <div class="col-12 col-md-6">
     <div class="custom-control custom-radio custom-control-inline">
       <input type="radio" id="customRadioInline1" name="customRadioInline" class="custom-control-input">
       <label class="custom-control-label" for="customRadioInline1">Category1</label>
@@ -27,9 +27,12 @@
   </div>
 </div>
 
-<div class="card-deck">
-
 {% for event in events %}
+  {% if forloop.counter0|divisibleby:3 %}
+    </div><br><div class="row">
+  {% endif %}
+
+  <div class="col-12 col-md-4">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title capitalize">{{ event.title }}</h5>
@@ -37,8 +40,7 @@
         <a href="{% url 'detail' event.id %}" class="card-link">Card link</a>
       </div>
     </div>
+  </div>
 {% endfor %}
-
-</div>
 
 {% endblock %}
