@@ -14,26 +14,16 @@
     <form method="GET" action="/search/" class="form-inline my-2 my-md-0">
       <input name="search" type="search" id="search-bar" class="form-control" placeholder="search">
       <input type="submit" value="Search" class="form-control btn btn-outline-dark my-2 my-sm">
+  </div>
+  <div class="col-12 col-md-6">
+      {% for category in categories %}
       <div class="custom-control custom-radio custom-control-inline">
-        <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-        <label class="custom-control-label" for="customRadioInline1">Category1</label>
+        <input type="radio" id="{{category}}" name="category" value="{{category}}" class="custom-control-input">
+        <label class="custom-control-label" for="{{category}}">{{category}}</label>
       </div>
-      <div class="custom-control custom-radio custom-control-inline">
-        <input type="radio" id="customRadioInline2" name="customRadioInline2" class="custom-control-input">
-        <label class="custom-control-label" for="customRadioInline2">Category2</label>
-      </div>
+      {% endfor %}
     </form>
   </div>
-  {% comment %} <div class="col-12 col-md-6">
-    <div class="custom-control custom-radio custom-control-inline">
-      <input type="radio" id="customRadioInline1" name="customRadioInline" class="custom-control-input">
-      <label class="custom-control-label" for="customRadioInline1">Category1</label>
-    </div>
-    <div class="custom-control custom-radio custom-control-inline">
-      <input type="radio" id="customRadioInline2" name="customRadioInline" class="custom-control-input">
-      <label class="custom-control-label" for="customRadioInline2">Category2</label>
-    </div>
-  </div> {% endcomment %}
 </div>
 
 {% for event in events %}
