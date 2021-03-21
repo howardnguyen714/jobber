@@ -63,6 +63,10 @@ body{
     color: rgb(165 134 111);
 }
 
+.card-link:hover{
+    color: black;
+}
+
 .col-md-6{
     padding-right: 0;
     padding-left: 0;
