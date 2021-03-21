@@ -7,7 +7,7 @@
             <h1> Profile </h1>
         </div>
         <div class="col-4 d-flex align-items-end flex-column">
-            <h4> Hello! Welcome {{user.username}} </h4>
+            <h4 class="capitalize"> Hello! Welcome {{user.username}}. </h4>
             <p class="date-joined"> Member since: {{user.date_joined}} </p>
             <form action="/profile/edit">
                 <input type="submit" value="Edit Username" class="btn btn-primary">
@@ -23,7 +23,6 @@
         <div class="card-body">
             <h5 class="card-title capitalize">{{ event.title }}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ event.date }}</h6>
-            <p class="card-text">{{ event.description }}</p>
             <a href="{% url 'detail' event.id %}" class="card-link">Card link</a>
         </div>
         </div>
