@@ -8,7 +8,6 @@ class Event(models.Model):
     speaker = models.CharField(max_length=255)
     description = models.TextField()
     category = models.CharField(max_length=200)
-    industry = models.CharField(max_length=200)
 
     users = models.ManyToManyField(User)
 

@@ -10,22 +10,28 @@ from random import randint
 
 from django.http import HttpResponse
 def home(request):
+  all_events = Event.objects.all()
+  categories = []
+  for event in all_events:
+    if event.category not in categories:
+      categories.append(event.category)
   context = {
     'events': Event.objects.all(),
+    'categories': categories,
     'form': UserCreationForm
   }
   return render(request, 'home.html', context)
 
 def get_category(request): 
   search_param = request.GET['search'].lower()
-  events = Event.objects.filter(title__contains=search_param)
+  category_param = request.GET['category']
+  events = Event.objects.filter(title__contains=search_param,category__contains=category_param)
   return render(request, 'results.html', {'events': events})
 
 @login_required
 def profile(request):
   current_user = request.user.id
   users_events = Event.objects.filter(users__id=current_user)
-  # print(users_events)
   return render(request, 'profile.html', { 'users_events': users_events } )
 
 @login_required
