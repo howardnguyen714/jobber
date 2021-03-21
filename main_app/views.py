@@ -28,6 +28,7 @@ def profile(request):
   # print(users_events)
   return render(request, 'profile.html', { 'users_events': users_events } )
 
+@login_required
 def edit(request):
   user = User.objects.get(username=request.user)
   user_form = UserForm(request.POST or None, instance=user)

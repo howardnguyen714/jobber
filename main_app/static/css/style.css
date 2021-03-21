@@ -1,9 +1,37 @@
+body{
+    font-family: 'Times New Roman', Times, serif;
+    background-color: rgb(255,254,252);
+}
+
+.navbar{
+    background-color: rgb(237,227,218);
+}
+
+.nav-link{
+    font-size: 1.2em;
+}
+
 .container{
     margin-top: 3%;
 }
 
+.jumbotron-fluid{
+    background-image: url('/static/images/background.jpg');
+    background-size: cover;
+    height: 500px;
+}
+
+.jumbo-title{
+    margin-top: 10%;
+    margin-left: 3%;
+}
+
+.jumbo-text{
+    margin-left: 1%;
+}
+
 .date-joined{
-    font-size: 0.8em;
+    font-size: 0.95em;
 }
 
 .eventDetailDivider {
@@ -23,6 +51,16 @@
 .card{
     margin-top: 2%;
     margin-bottom: 2%;
+    border: 1.5px solid rgba(237,227,218);
+}
+
+.card:hover{
+    transform: translate(-2px,2px);
+    box-shadow: 2px 2px 10px rgb(237,227,218);
+}
+
+.card-link{
+    color: rgb(165 134 111);
 }
 
 .col-md-6{
@@ -32,4 +70,25 @@
 
 .capitalize{
     text-transform: capitalize;
+}
+
+.btn-primary{
+    color: grey;
+    background-color: rgb(237,227,218);
+    border-color: rgb(237,227,218);
+}
+
+.btn-primary:hover{
+    background-color: grey;
+    border-color: rgb(244,234,218);
+}
+
+.modal-header{
+    background-color: rgb(237,227,218);
+}
+
+ul, .helptext{
+    font-size: 0.8em;
+    color: rosybrown;
+    white-space: nowrap;
 }
