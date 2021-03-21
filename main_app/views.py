@@ -10,28 +10,34 @@ from random import randint
 
 from django.http import HttpResponse
 def home(request):
+  all_events = Event.objects.all()
+  categories = []
+  for event in all_events:
+    if event.category not in categories:
+      categories.append(event.category)
   context = {
     'events': Event.objects.all(),
+    'categories': categories,
     'form': UserCreationForm
   }
   return render(request, 'home.html', context)
 
 def get_category(request): 
   search_param = request.GET['search'].lower()
-  # print(search_param)
-  events = Event.objects.filter(category__contains=search_param)
+  category_param = request.GET['category']
+  events = Event.objects.filter(title__contains=search_param,category__contains=category_param)
   return render(request, 'results.html', {'events': events})
 
 @login_required
 def profile(request):
-  return render(request, 'profile.html')
+  current_user = request.user.id
+  users_events = Event.objects.filter(users__id=current_user)
+  return render(request, 'profile.html', { 'users_events': users_events } )
 
+@login_required
 def edit(request):
   user = User.objects.get(username=request.user)
-  # print(user)
-  # user=request.user
   user_form = UserForm(request.POST or None, instance=user)
-  # print(user)
   if request.POST and user_form.is_valid():
     user_form.save()
     return redirect('profile')
@@ -41,14 +47,10 @@ def edit(request):
 def events_detail(request, event_id):
   event = Event.objects.get(id=event_id)
   current_user = request.user.id
-  # print(event.users.get(id=current_user).id)
   users_events = event.users.all().values_list('id')
-  print(users_events)
   
   registered = True
   for user in users_events:
-    print(user[0])
-    print(current_user)
     if(user[0] == current_user):
       registered = False
 
@@ -57,9 +59,6 @@ def events_detail(request, event_id):
     'registered': registered
   }
   return render(request, 'detail.html', context)
-
-# def find_instance(users_events, current_user):
-  
 
 @login_required
 def assoc_event(request, event_id, user_id):

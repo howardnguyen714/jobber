@@ -2,17 +2,22 @@
 {% block content %}
 
 <div class="row">
-    <h2>{{ event.title }}</h2>
+    <h2 class="capitalize">{{ event.title }}</h2>
 </div>
 <div class="row">
     {{ event.date }}
 </div>
 <div class="row">
-    Speaker(s): {{event.speaker}}<span class="eventDetailDivider" style="margin-left: 10px">|</span>Industry: {{event.industry}}<span class="eventDetailDivider">|</span>Type: {{event.category}}
+    Speaker(s): {{event.speaker}}<span class="eventDetailDivider" style="margin-left: 10px">
+</div>
+<div class="row">
+    </span>Category: {{event.category}}<span class="eventDetailDivider">
 </div>
 <div class="row">
     <p>{{ event.description }}</p>
 </div>
+
+{% if user.is_authenticated %}
 
 {%if registered%}
 <form action="assoc_event/{{user.id}}/" method="POST">
@@ -21,18 +26,28 @@
 </form>
 
 {%else%}
-<form action="unassoc_event/{{user.id}}/" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Unregister" class="btn btn-primary">
-</form>
-
-{% comment %} <form action="#">
-    <input type="submit" data-toggle="modal" data-target="confirmUnregister" class="btn btn-primary">
-</form> {% endcomment %}
+<input type="submit" value="Unregister" data-toggle="modal" data-target="#confirmUnregister" class="btn btn-primary">
 {%endif%}
 
-<div class="modal fade" id="confirmUnregister" tabindex="-1" aria-labelledby="signUpModalLabel" aria-hidden="true">
-
+<div class="modal fade" id="confirmUnregister" tabindex="-1" aria-labelledby="confirmUnregisterLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="signUpModalLabel">Are you sure you want to unregister?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <form method="post" action="unassoc_event/{{user.id}}/" id="unregisterBtn">
+                    {% csrf_token %}
+                    <input type="submit" value="Unregister" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+
+{% endif %}
 
 {% endblock %}
