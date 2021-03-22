@@ -32,5 +32,4 @@ Jobber is a website where users can go search for networking and career developm
 
 ## Screenshots
 
-![screen_shot_2021-03-22_at_9 38 52_am 1](https://user-images.githubusercontent.com/73868903/112026767-c616c880-8af3-11eb-8fa3-7a856bb46928.png)
 
