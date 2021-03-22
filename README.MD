@@ -31,5 +31,20 @@ Jobber is a website where users can go search for networking and career developm
 
 
 ## Screenshots
+Home Screen
 ![Home Screen](https://user-images.githubusercontent.com/28818219/112027785-c5cafd00-8af4-11eb-8924-c5084baa2eb6.png)
 
+Sign Up
+![Sign Up](https://user-images.githubusercontent.com/28818219/112027987-f6129b80-8af4-11eb-93b8-f244ad4be4b5.png)
+
+Log In
+![Log In](https://user-images.githubusercontent.com/28818219/112028158-1d696880-8af5-11eb-9747-637ea76111f5.png)
+
+Profile Page
+![Profile Page](https://user-images.githubusercontent.com/28818219/112028280-3e31be00-8af5-11eb-8211-095342e0731c.png)
+
+Details Page
+![Details Page](https://user-images.githubusercontent.com/28818219/112028475-70432000-8af5-11eb-804c-a90f347f99aa.png)
+
+Unregister Confirmation
+![Unregister Confirmation](https://user-images.githubusercontent.com/28818219/112028605-9799ed00-8af5-11eb-87e1-007b15f5982c.png)
