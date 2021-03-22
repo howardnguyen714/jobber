@@ -19,7 +19,7 @@
       {% for category in categories %}
       <div class="custom-control custom-radio custom-control-inline">
         <input type="radio" id="{{category}}" name="category" value="{{category}}" class="custom-control-input">
-        <label class="custom-control-label" for="{{category}}">{{category}}</label>
+        <label class="custom-control-label capitalize" for="{{category}}">{{category}}</label>
       </div>
       {% endfor %}
     </form>
