@@ -19,7 +19,7 @@
       {% for category in categories %}
       <div class="custom-control custom-radio custom-control-inline">
         <input type="radio" id="{{category}}" name="category" value="{{category}}" class="custom-control-input">
-        <label class="custom-control-label" for="{{category}}">{{category}}</label>
+        <label class="custom-control-label capitalize" for="{{category}}">{{category}}</label>
       </div>
       {% endfor %}
     </form>
@@ -36,7 +36,7 @@
       <div class="card-body">
         <h5 class="card-title capitalize">{{ event.title }}</h5>
         <h6 class="card-subtitle mb-2 text-muted">{{ event.date }}</h6>
-        <a href="{% url 'detail' event.id %}" class="card-link">Card link</a>
+        <a href="{% url 'detail' event.id %}" class="card-link">More Details</a>
       </div>
     </div>
   </div>
