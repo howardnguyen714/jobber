@@ -2,6 +2,8 @@
 
 Jobber is a website where users can go search for networking and career development related events. Users can sign up and log in to register for and keep track of events.
 
+https://jobber-events.herokuapp.com/
+
 ## Technologies Used
 
 * Django
